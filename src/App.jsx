@@ -20,13 +20,16 @@ import { useGSAP } from '@gsap/react';
 
 const App = () => {
 
-const [showLoading, setShowLoading] = useState(true);
+const [showLoading, setShowLoading] = useState(()=>{
+  return !sessionStorage.getItem("hasEntered")
+});
 
 
 
 
 const handleLoadingComplete = () => {
-    setShowLoading(false);
+    // setShowLoading(false);
+    sessionStorage.setItem("hasEntered" , true)
     
   };
   
