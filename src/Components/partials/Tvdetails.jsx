@@ -13,7 +13,7 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import image from "../../../public/images.jpeg";
 import LoadingSpinner from "../LoadingSpinner";
 import imagelogo from "../../../public/officialweblogo.png";
-import wikilogo from "../../../public/wikidata-logo.png";
+import wikilogo from "../../../public/Wikidata-logo.png";
 import { FaStar } from "react-icons/fa6";
 import Crew from "../partials/crew";
 import noimage from "../../../public/noimage.jpg";
