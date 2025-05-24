@@ -163,7 +163,7 @@ const LoadingAnimation = ({ onComplete }) => {
         opacity: 0,
         delay: Math.random() * 0.3,
         ease: "power2.out",
-        delay : Math.random()*0.3
+        
       },0);
     });
     
