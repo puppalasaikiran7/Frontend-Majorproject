@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncloadtv } from "../../store/actions/tvactions";
+import { asyncloadtv } from "../../store/actions/Tvactions";
 import {
   Link,
   useLocation,
