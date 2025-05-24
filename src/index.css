@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: CaesarDressing;
+    src: url(fonts/CaesarDressing-Regular.otf) format("opentype");
+}
+@font-face {
+    font-family: monoton;
+    src: url(fonts/Monoton-Regular.otf) format("opentype");
+}
+
+html{
+    /* background-color: #212121; */
+    /* background-color: #121217; */
+    background-color: black;
+    /* background-color: #121318; */
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    
+    background-color: transparent;
+    z-index: 100000;
+}
+
+::-webkit-scrollbar-thumb{
+    
+    background-image: linear-gradient(#E80000 ,  #CA0000 , #AD0000  , #890000 , #720000 );
+    border-radius: 15px;
+    height: 110px;
+    
+    
+}
+
+
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background-color: #334155; 
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+
+.select select {
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    background: 334155;
+    flex: 1;
+    padding: 0 0.5em;
+    mix-blend-mode: difference;
+    font-size: 2em;
+    font-family: "Gilroy", sans-serif;
+    cursor: pointer;
+    margin-top: -20px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+
+.select::after {
+
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background-color: #334155; 
+    cursor: pointer;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    font-size: 1rem;
+    mix-blend-mode: color-dodge;
+    color: #CCBEAA;
+}
+
+.wiki
+{
+    background-image:  linear-gradient(to right , red , white , red , white  , red  , white , green ,  white  , green , white , blue , white , blue ,white , green  , white, green );
+}
+
+.background{   
+    background-image: linear-gradient(to right bottom , rgb(232, 231, 231) , rgb(0, 191, 255) , black , black  , black , black , black);    
+}
+
+.boybackground{
+    background-image: linear-gradient(to right bottom  ,  rgb(255, 212, 212), red , black , black  , black ,black , black);
+}
+
+.fontmonoton{
+    font-family: Monoton;
+}
+
+.fontcaesar{
+    font-family: CaesarDressing;
+}

@@ -1,0 +1,360 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncloadmovie } from "../../store/actions/Movieactions";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useParams,
+  Outlet,
+} from "react-router-dom";
+import { removemovie } from "../../store/reducers/Movieslice";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
+import image from "../../../public/images.jpeg";
+import LoadingSpinner from "../LoadingSpinner";
+import imagelogo from "../../../public/officialweblogo.png";
+import wikilogo from "../../../public/wikidata-logo.png";
+import { FaStar } from "react-icons/fa6";
+import Crew from "../partials/crew";
+import noimage from "../../../public/noimage.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import HorizontalCards from "../partials/HorizontalCards";
+import { useRef } from "react";
+import gsap  from "gsap";
+import hulk from "../../../public/hulk.png"
+
+const Moviedetail = () => {
+
+  const hulkRef = useRef(null)
+  const containerRef = useRef(null);
+
+  const { pathname } = useLocation();
+  // console.log(pathname)
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { info } = useSelector((state) => state.movie);
+  console.log(info);
+
+  useEffect(() => {
+    dispatch(asyncloadmovie(id));
+    return () => {
+      dispatch(removemovie());
+    };
+  }, [id]);
+
+
+  useEffect(() => {
+  if (info?.details?.title?.toLowerCase().includes("hulk")) {
+    const hulked = gsap.timeline();
+
+    // Hulk jumps from above to original position
+    hulked.fromTo(
+      hulkRef.current,
+      { y: -500, opacity: 1 },
+      { y: 0, duration: 0.7, ease: "power1.out" }
+    );
+
+    // Then screen shake starts
+    hulked.to(containerRef.current, {
+      x: -10,
+      y: -10,
+      duration: 0.1,
+      repeat: 10,
+      yoyo: true,
+      ease: "power2.inOut",
+      onComplete: () => {
+        gsap.to(containerRef.current, { x: 0, y: 0, duration: 0.2 });
+      },
+    });
+  }
+}, [info]);
+
+
+  return info ? (
+    <div ref={containerRef} className=" w-full relative overflow-x-hidden">
+      <div className="w-40 h-20 fixed top-10 z-50 left-10 ">
+        <div className="w-full flex items-center px-[3%] py-2 justify-between">
+          <div className="relative group w-[1%]">
+            <Link onClick={() => navigate(-1)}>
+              <FaArrowRightFromBracket className="text-white rotate-180 text-4xl mr-5 hover:text-zinc-300 transition-colors duration-200" />
+            </Link>
+            <div className="absolute left-[-35px] top-full mt-2 h-98 w-98 hidden group-hover:block z-50">
+              <img
+                src={image}
+                alt="Hover preview"
+                className="w-40 h-40 object-cover rounded-lg shadow-xl border-2 border-white"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`text-white mt-25  p-0 `}>
+        {info.images.logos.length > 0 ? (
+          <img
+            src={`https://image.tmdb.org/t/p/original/${
+              info.images.logos.find((m) => m.iso_639_1 === "en" || m.iso_639_1 === "hi" || m.iso_639_1 === "te" || m.iso_639_1 ===  null ).file_path 
+            }`}
+            alt="Movie Logo"
+            className=" p-10  object-cover h-full "
+          />
+        ) : (
+          <div className="text-9xl uppercase  font-bold ml-100 ">
+            <span className="text-red-500 p-2 text-9xl">no</span>
+            <div className="bg-white text-black inline p-2 rounded">logo</div>
+          </div>
+        )}
+      </div>
+
+
+      {/* hulk jump */}
+
+      {info?.details?.title?.toLowerCase().includes("hulk") && (
+        <div
+          ref={hulkRef}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            width: "150px",
+            zIndex: 1000,
+          }}
+        >
+          <img
+            src={hulk}
+            alt="Hulk"
+            style={{ width: "100%", height: "full" }}
+          />
+        </div>
+      )}
+
+      {/* poster */}
+      <div className=" rounded-3xl mt-20  flex  ">
+        <div className="h-full w-[25%] ">
+          <img
+            src={`https://image.tmdb.org/t/p/original/${
+              info.images.posters.find((m) => m.iso_639_1 === "en" || m.iso_639_1 === "hi" )?.file_path  || info.images.posters[0]?.file_path
+            }`}
+            alt="Movie"
+            className=" p-10 ml-10 object-cover h-full rounded-[5vw] "
+          />
+
+          <Link
+            to={`${pathname}/trailer`}
+            className="font-semibold bg-white w-[50%] rounded-xl flex  items-center gap-3 p-2 ml-23 tracking-wider"
+          >
+            <FontAwesomeIcon
+              icon={faYoutube}
+              style={{ color: "#fe0606" }}
+              className="ml-2"
+            />{" "}
+            Watch Trailer
+          </Link>
+        </div>
+
+        <div className="w-[80%]  h-full p-10 text-white ">
+          <div className=" ">
+            <div className="flex items-center gap-2 text-3xl font-bold  p-5 rounded-xl ">
+              <span className="uppercase ">rating : </span>
+              <FaStar className="text-amber-300 " />
+              {info.details.vote_average.toFixed(1)}
+            </div>
+          </div>
+
+          <div className="">
+            <h1 className="font-bold p-5  text-3xl uppercase">
+              release date : {info.details.release_date}
+            </h1>
+
+            <div className=" flex gap-10 items-center p-5">
+              <h1 className="text-3xl font-bold uppercase">run time : </h1>
+              <h1 className="text-3xl font-bold capitalize">
+                {info.details.runtime} minutes
+              </h1>
+            </div>
+
+            <div className=" flex gap-10 items-center p-5">
+              <h1 className="text-3xl font-bold uppercase">genres : </h1>
+              {info.details.genres.map((items, index) => {
+                return (
+                  <h1 key={index} className="font-semibold text-2xl">
+                    {items.name}
+                  </h1>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="p-5">
+            <div className="text-2xl ">
+              <h1 className="font-bold">overview : </h1>
+            </div>
+            <span className="text-xl">{info.details.overview}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-20">
+        <h1 className="text-white font-bold text-6xl ml-10"> Crew</h1>
+        <Crew title="person" />
+      </div>
+
+      {/* similar */}
+      <div className=" ">
+        <h1 className="text-5xl text-white ml-10 uppercase font-bold">
+          similar
+        </h1>
+        <HorizontalCards
+          card="movie"
+          data={info.similar.length > 0 ? info.similar : info.recommendations}
+        />
+      </div>
+
+      {/* production */}
+
+      <div className="text-white p-10 mt-10 w-full">
+        <h1 className="text-4xl font-bold uppercase mb-6">
+          Production Companies
+        </h1>
+
+        <div className="flex mt-5 h-[250px] overflow-x-auto overflow-y-hidden scrollbar-hide">
+          {info?.details?.production_companies?.map((item, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-[200px] h-full" // Fixed width for each company card
+            >
+              <div className="flex flex-col items-center justify-between h-full">
+                <div className="bg-white rounded-xl p-4 flex items-center justify-center h-[180px] w-[180px]">
+                  <img
+                    src={
+                      item.logo_path
+                        ? `https://image.tmdb.org/t/p/original/${item.logo_path}`
+                        : noimage
+                    }
+                    alt={item.name}
+                    className="max-h-[140px] max-w-[160px] object-contain"
+                    onError={(e) => {
+                      e.target.src = noimage;
+                      e.target.className =
+                        "h-[140px] w-[160px] object-contain p-2";
+                    }}
+                  />
+                </div>
+                <h1 className="mt-2 text-lg font-semibold text-center px-2">
+                  {item.name}
+                </h1>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* buy */}
+      <div className="h-[20vh] backdrop-blur-3xl mt-5 mx-5 ">
+        <div className="flex bg-white rounded-xl gap-10 items-center flex-wrap p-10 hover:bg-black group">
+          {info?.watchprovider?.buy?.length > 0 ? (
+            <>
+              <h1 className="text-4xl font-bold text-black uppercase group-hover:text-white">buy</h1>
+              {info.watchprovider.buy.map((items, index) => (
+                <img
+                  key={index}
+                  src={`https://image.tmdb.org/t/p/original/${items.logo_path}`}
+                  alt=""
+                  className="h-[10vh] w-[10vh] rounded-xl object-contain"
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              <h1 className="text-4xl font-bold text-black uppercase group-hover:text-white">
+                Streaming
+              </h1>
+              {info?.watchprovider?.flatrate?.map((items, index) => (
+                <img
+                  key={index}
+                  src={`https://image.tmdb.org/t/p/original/${items.logo_path}`}
+                  alt=""
+                  className="h-[5vh] w-[5vh] rounded-xl object-contain"
+                />
+              ))}
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* rent */}
+      <div className="h-max   p-10 hover:bg-white group hover:p-10 mx-5 mt-5 rounded-xl">
+        <div className=" flex  gap-10 items-center flex-wrap rounded-xl  ">
+          <h1 className="text-4xl font-bold text-white uppercase group-hover:text-black">rent</h1>           
+          {info?.watchprovider?.rent?.length > 0 ? (
+            info.watchprovider.rent.map((items, index) => {
+              return (
+                <img
+                  key={index}
+                  src={`https://image.tmdb.org/t/p/original/${items.logo_path}`}
+                  alt=""
+                  className="h-[10vh] w-[10vh] rounded-xl object-contain"
+                />
+              );
+            })
+          ) : (
+            <div className="text-white text-2xl font-bold capitalize group-hover:text-black">
+              there is no provider
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* links */}
+      <div className="px-5  ">
+        <div className="text-white flex  bg-white rounded-xl items-center gap-10  mt-5  hover:bg-black group">
+          <h1 className="text-black font-bold ml-10 text-4xl mt-5 group-hover:text-white">
+            External links
+          </h1>
+          <a
+            href={info.details.homepage}
+            target="_blank"
+            className="bg-white  rounded-full h-30 w-30 "
+          >
+            <img
+              src={imagelogo}
+              alt=""
+              className="rounded-[60%] h-30 w-30 object-cover "
+            />
+          </a>
+
+          <div className="bg-yellow-400 w-30 h-10 pl-6 pt-1 text-shadow-amber-50 text-shadow-sm rounded-xl cursor-pointer">
+            <a
+              href={`https://www.imdb.com/title/${info.extrenalid.imdb_id}/`}
+              target="_blank"
+              className="text-black font-bold text-3xl "
+            >
+              IMDB
+            </a>
+          </div>
+
+          <a
+            href={`https://www.wikidata.org/wiki/${info.extrenalid.wikidata_id}`}
+            target="_blank"
+          >
+            <img
+              src={wikilogo}
+              alt=""
+              className="h-20 w-30 object-cover bg-white rounded-xl "
+            />
+          </a>
+        </div>
+      </div>
+
+      <Outlet />
+    </div>
+  ) : (
+    <LoadingSpinner />
+  );
+};
+
+export default Moviedetail;

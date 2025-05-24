@@ -1,0 +1,17 @@
+
+.searchcss::-webkit-scrollbar {
+  width: 12px !important; 
+  background-color: transparent !important;
+}
+
+.searchcss::-webkit-scrollbar-thumb {
+  background-color: #4CAF50 !important; 
+  border-radius: 6px !important;
+  border: 3px solid transparent !important;
+  
+}
+
+.searchcss {
+  scrollbar-width: thin !important;
+  scrollbar-color: #4CAF50 transparent !important;
+}
