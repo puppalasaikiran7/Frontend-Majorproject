@@ -37,7 +37,7 @@ const handleLoadingComplete = () => {
 
 
       { showLoading ? (<div  className='h-full w-full bg-black'>
-                  <LoadingAnimation2 onComplete={handleLoadingComplete} />
+                  <LoadingAnimation onComplete={handleLoadingComplete} />
           </div>
         ) : (
 
