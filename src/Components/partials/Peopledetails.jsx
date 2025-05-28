@@ -9,7 +9,7 @@ import {
   useParams,
   Outlet,
 } from "react-router-dom";
-import wikilogo from "../../assets/wikidata-logo.png";
+// import wikilogo from "../../assets/wikidata-logo.png";
 import { FaFacebook } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 
