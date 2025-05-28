@@ -9,7 +9,7 @@ import {
   useParams,
   Outlet,
 } from "react-router-dom";
-import wikilogo from "../../../public/wikidata-logo.png";
+import wikilogo from "../../assets/wikidata-logo.png";
 import { FaFacebook } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 
@@ -18,7 +18,7 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import LoadingSpinner from "../LoadingSpinner";
 import { FaStar } from "react-icons/fa6";
 import Crew from "../partials/crew";
-import noimage from "../../../public/noimage.jpg";
+import noimage from "/noimage.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import HorizontalCards from "../partials/HorizontalCards";
