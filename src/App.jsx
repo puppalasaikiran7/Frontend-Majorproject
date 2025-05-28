@@ -30,6 +30,7 @@ const [showLoading, setShowLoading] = useState(()=>{
 const handleLoadingComplete = () => {
     // setShowLoading(false);
     sessionStorage.setItem("hasEntered" , true)
+    setShowLoading(false)
     
   };
   
