@@ -247,8 +247,8 @@ const LoadingAnimation = ({ onComplete }) => {
 
         {/* Call to Action */}
         <div className="absolute z-[100] bg-white/20 backdrop-blur-md  rounded-4xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-6 h-[30%] w-[65%] p-4  lg:p-10 lg:h-[40%] lg:w-[46%]    ">
-          <div className="bg-green-500 p-3 rounded-xl shadow-lg border h-30vh w-50vw lg:h-100vh lg:w-70vw lg:p-5">
-            <h1 className="text-black font-[monument]  text-[4vw] font-extrabold  tracking-wider uppercase text-center lg:text-3xl">
+          <div className=" p-3 rounded-xl shadow-lg  h-40vh w-60vw lg:h-100vh lg:w-70vw lg:p-5">
+            <h1 className="text-black font-[monument]  text-[4vw] font-extrabold  tracking-wider uppercase text-center lg:text-4xl">
               Click Here To Experience 
             </h1>
           </div>
@@ -263,7 +263,7 @@ const LoadingAnimation = ({ onComplete }) => {
           </motion.div>
           <button
             onClick={handleStart}
-            className="mt-[-7px] xl:m-0 px-3 py-2 text-xl sm:px-6 sm:py-3 bg-white font-[monument]  cursor-pointer text-black rounded-lg  hover:scale-110 transition-transform duration-500 font-extrabold tracking-wider sm:text-2xl uppercase"
+            className="mt-[-7px] xl:m-0 px-3 py-2 text-xl sm:px-6 sm:py-3  font-[monument]  cursor-pointer text-black rounded-lg  hover:scale-110 transition-transform duration-500 font-extrabold tracking-wider sm:text-4xl uppercase"
           >
             enter
           </button>
