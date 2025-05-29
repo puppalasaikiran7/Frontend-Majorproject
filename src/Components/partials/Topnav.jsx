@@ -41,15 +41,15 @@ const Topnav = () => {
   
   
   return (
-    <div className='h-[10vh] relative flex items-center justify-start ml-[15%] searchcss'>
-      <IoSearch className='text-zinc-200 text-3xl' />
+    <div className='h-[10vh]  relative flex  items-center justify-center md:justify-start ml-[10%] md:ml-[15%] mt-2 searchcss'>
+      <IoSearch className='text-zinc-200 text-3xl hidden lg:block' />
       
       <input 
         value={query} 
         onChange={(e) => setQuery(e.target.value)} 
         type="text" 
         placeholder='Search Anything' 
-        className='text-white  w-[50%] mx-5 p-5 text-xl font-bold tracking-wider  outline-0 bg-black border border-[rgb(255,255,255,0.2)] backdrop-blur-[25px] saturate-[200%] rounded-4xl pl-10' 
+        className='text-white w-[70%]  md:w-[50%] mx-5 p-5 text-xl font-bold tracking-wider  outline-0 bg-black border border-[rgb(255,255,255,0.2)] backdrop-blur-[25px] saturate-[200%] rounded-4xl pl-10' 
       />
       
       {query.length > 0 && (
@@ -60,7 +60,7 @@ const Topnav = () => {
       )}
 
       {(query.length > 0 && (search.length > 0 || isLoading || error)) && (
-        <div className='overflow-auto rounded-xl max-h-[45vh] w-[80%]  text-white absolute left-[-10%] top-[110%] bg-black z-50 shadow-xl shadow-zinc-100'>
+        <div className='overflow-auto overflow-x-hidden rounded-xl ml-[4%] h-[50vh] md:max-h-[45vh]  min-w-full  md:w-[80%]  text-white absolute left-[-10%] top-[110%] bg-black z-50 shadow-xl shadow-zinc-100'>
           {isLoading ? (
             <div className="p-10 text-center text-2xl font-bold text-red-500  ">  <img src="/waiting-meme.gif" alt="Loading..." className="w-[90%] h-[290px] object-contain" /> </div>
           ) : error ? (
@@ -72,7 +72,7 @@ const Topnav = () => {
               <Link 
                 key={index} 
                 to={`/${item.media_type}/${item.id}`}
-                className='hover:bg-zinc-900/10 p-10 w-[100%] font-semibold tracking-wider flex justify-start items-center border-b-2 border-zinc-100'
+                className='hover:bg-zinc-900/10 p-5 md:p-10 w-[100%] font-semibold tracking-wider flex justify-start items-center border-b-2 border-zinc-100'
               >
                 <img 
                   src={
@@ -81,7 +81,7 @@ const Topnav = () => {
                       : "/no.gif"
                   } 
                   alt="" 
-                  className='w-[30vw] h-[35vh] object-cover mr-10 rounded-2xl hover:scale-110 hover:duration-400 object-center'
+                  className=' w-[25vw] h-[15vh] rounded-md   md:w-[30vw] md:h-[35vh] object-cover mr-10 md:rounded-2xl hover:scale-110 hover:duration-400 object-center'
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "/no.gif";

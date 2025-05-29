@@ -80,23 +80,30 @@ const Popular = () => {
   return popular.length > 0 ? (
     <div className="pb-10">
       {/* Fixed Top Navigation */}
-      <div className='w-full fixed bg-black/20 backdrop-blur-3xl top-0 z-50'>
-        <div className='w-full flex items-center px-[3%] py-2 justify-between'>
-          <div className="relative group w-[1%]">
-            <Link onClick={() => navigate(-1)}>
-              <FaArrowRightFromBracket className="text-white rotate-180 text-4xl mr-5 hover:text-zinc-300 transition-colors duration-200" />
-            </Link>
-            <div className="absolute left-[-35px] top-full mt-2 h-98 w-98 hidden group-hover:block z-50">
-              <img src={image} alt="Hover preview" className="w-40 h-40 object-cover rounded-lg shadow-xl border-2 border-white" />
-            </div>
-          </div>
-          <div className='flex items-center w-[96%] ml-40'>
-            <div className='w-[90%]'>
-              <Topnav />
-            </div>
-          </div>
-        </div>
+      <div className="w-full fixed bg-black/20 backdrop-blur-3xl top-0 z-50">
+  <div className="w-full flex items-center justify-between px-4 sm:px-6 md:px-10 py-2">
+    {/* Back Button + Hover Image */}
+    <div className="relative group flex-shrink-0">
+      <Link onClick={() => navigate(-1)} className="block">
+        <FaArrowRightFromBracket className="text-white rotate-180 text-3xl sm:text-4xl hover:text-zinc-300 transition-colors duration-200" />
+      </Link>
+      <div className="absolute left-0 sm:left-[-35px] top-full mt-2 hidden group-hover:block z-50">
+        <img
+          src={image}
+          alt="Hover preview"
+          className="w-28 h-28 sm:w-36 sm:h-36 object-cover rounded-lg shadow-xl border-2 border-white"
+        />
       </div>
+    </div>
+
+    {/* Topnav */}
+    <div className="flex-1 ml-4 sm:ml-8">
+      <div className="w-full">
+        <Topnav />
+      </div>
+    </div>
+  </div>
+</div>
 
         
 

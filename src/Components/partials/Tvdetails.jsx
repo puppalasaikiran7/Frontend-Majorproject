@@ -40,7 +40,7 @@ const Tvdetails = () => {
   }, [id]);
 
   return info ? (
-    <div className=" w-full relative">
+    <div className=" w-full relative overflow-x-hidden">
       <div className="w-40 h-20 absolute top-10 z-50 left-10 ">
         <div className="w-full flex items-center px-[3%] py-2 justify-between">
           <div className="relative group w-[1%]">
@@ -62,7 +62,7 @@ const Tvdetails = () => {
         {info.images.logos.length > 0 ? (
           <img
             src={`https://image.tmdb.org/t/p/original/${
-              info.images.logos.find((m) => m.iso_639_1 === "en").file_path
+              info.images.logos.find((m) => m.iso_639_1 === "en" || "uk").file_path
             }`}
             alt="tv Logo"
             className=" p-10  object-cover h-full "

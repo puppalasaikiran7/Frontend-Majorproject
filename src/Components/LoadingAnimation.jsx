@@ -218,9 +218,9 @@ const LoadingAnimation = ({ onComplete }) => {
 
   // if (!started) {
     return (
-      <div className="fixed inset-0 bg-black z-[9999] overflow-hidden" ref={containerRef}>
+      <div className="fixed inset-0 bg-black z-[9999] overflow-hidden " ref={containerRef}>
         
-        <div className="absolute inset-0 z-[100]">
+        <div className="absolute inset-0 z-[100] ">
           {images.map((item, index) => {
             
             
@@ -230,7 +230,7 @@ const LoadingAnimation = ({ onComplete }) => {
                 ref={(el) => (imageRefs.current[index] = el)}
                 src={item.imageurl}
                 alt={item.name}
-                className="absolute w-1/10 h-1/4 object-cover rounded-xl shadow-md cursor-grab "
+                className="absolute w-1/4 h-1/5 lg:w-1/10 lg:h-1/4 object-cover rounded-xl shadow-md cursor-grab  "
                 style={{
                   top: `${Math.random() * 80 + 10}%`,
                   left: `${Math.random() * 80 + 10}%`,
@@ -246,10 +246,10 @@ const LoadingAnimation = ({ onComplete }) => {
 
 
         {/* Call to Action */}
-        <div className="absolute z-[100] bg-white/20 backdrop-blur-md p-10 rounded-4xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-6">
-          <div className="bg-green-500 p-5 rounded-xl shadow-lg border">
-            <h1 className="text-black font-[monument] font-extrabold text-3xl tracking-wider uppercase text-center">
-              Click Here To Experience
+        <div className="absolute z-[100] bg-white/20 backdrop-blur-md  rounded-4xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-6 h-[30%] w-[65%] p-4  lg:p-10 lg:h-[40%] lg:w-[46%]    ">
+          <div className="bg-green-500 p-3 rounded-xl shadow-lg border h-30vh w-50vw lg:h-100vh lg:w-70vw lg:p-5">
+            <h1 className="text-black font-[monument]  text-[4vw] font-extrabold  tracking-wider uppercase text-center lg:text-3xl">
+              Click Here To Experience 
             </h1>
           </div>
           <motion.div 
@@ -257,13 +257,13 @@ const LoadingAnimation = ({ onComplete }) => {
             dragConstraints={containerRef} 
             dragElastic={0.7} 
             whileDrag={{scale: 1.2}} 
-            className="text-white text-3xl animate-bounce cursor-grab"
+            className="text-white text-2xl lg:text-4xl animate-bounce cursor-grab"
           >
             <FaArrowDownLong />
           </motion.div>
           <button
             onClick={handleStart}
-            className="px-6 py-3 bg-white font-[monument]  cursor-pointer text-black rounded-lg  hover:scale-110 transition-transform duration-500 font-extrabold tracking-wider text-2xl uppercase"
+            className="mt-[-7px] xl:m-0 px-3 py-2 text-xl sm:px-6 sm:py-3 bg-white font-[monument]  cursor-pointer text-black rounded-lg  hover:scale-110 transition-transform duration-500 font-extrabold tracking-wider sm:text-2xl uppercase"
           >
             enter
           </button>

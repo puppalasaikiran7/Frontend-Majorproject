@@ -98,7 +98,7 @@ const Home = () => {
         <div className='w-full h-screen overflow-hidden '>
           <div className='w-full h-screen flex'>
             <Sidenav />
-            <div className='w-[80%] h-full overflow-y-auto overflow-x-hidden scroll'>
+            <div className='w-full h-full overflow-y-auto overflow-x-hidden scroll'>
               <div className='mb-20'>
                 <div className='fixed z-100 w-full'>
                   <Topnav />
@@ -109,7 +109,7 @@ const Home = () => {
 
               <div className='flex text-white justify-between items-center p-5'>
                 <div className='bg-slate-900 rounded-2xl hover:bg-slate-900 border border-white'>
-                  <h1 className='text-6xl font-bold uppercase mix-blend-difference p-5'>trending</h1>
+                  <h1 className='text-xl md:text-6xl font-bold uppercase mix-blend-difference p-5'>trending</h1>
                 </div>
                 <div>
                   <DropDown

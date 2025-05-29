@@ -5,7 +5,7 @@ const DropDown = ({ options, selectedValue, func , title }) => {
 
   
   return (
-    <div className='select-container relative bg-slate-900 mb-1.5 border border-white rounded-md w-80 h-12'>
+    <div className='select-container relative bg-slate-900 mb-1.5 border border-white rounded-md w-40 md:w-80 md:h-12 h-17  '>
       <select 
         name="format" 
         id="format" 
